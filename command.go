@@ -21,7 +21,7 @@ var (
 	COMMAND_FREEZE                  = []byte("Ob")
 	COMMAND_ASPECT                  = []byte("Oc")
 	COMMAND_SDIFORMAT               = []byte("Od")
-	COMMAND_SEEMLESS_AND_LOCK       = []byte("Oe")
+	COMMAND_SEAMLESS_AND_LOCK       = []byte("Oe")
 	COMMAND_ROTATE_AND_MIRROR       = []byte("Of")
 	COMMAND_POWERSAVE               = []byte("Og")
 	COMMAND_TESTPATTERN             = []byte("Oh")
