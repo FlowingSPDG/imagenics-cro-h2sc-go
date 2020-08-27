@@ -3,12 +3,15 @@ package h2sc
 import (
 	"fmt"
 	"net"
+	"time"
 )
 
 const (
 	IPaddr            = "192.168.002.222"
 	Port              = 1300
 	fixedPacketLength = 12
+
+	timeout = time.Millisecond * 50
 )
 
 var (
@@ -64,11 +67,34 @@ func (p *controlPacket) ToSlice() []byte {
 type H2SC struct {
 	ipAddr net.IP // IP address
 	id     string // id number?
+	conn   net.Conn
+	closed bool
 }
 
 // New H2SC Struct Pointer
-func New() *H2SC {
+func New() (*H2SC, error) {
+	addr := fmt.Sprintf("%s:%d", IPaddr, Port)
+	conn, err := net.DialTimeout("tcp", addr, timeout)
+	if err != nil {
+		return nil, err
+	}
 	return &H2SC{
 		ipAddr: net.ParseIP(IPaddr).To4(),
+		conn:   conn,
+		closed: false,
+	}, nil
+}
+
+// Disconnect Close connection.
+func (h *H2SC) Disconnect() error {
+	if err := h.conn.Close(); err != nil {
+		return err
 	}
+	h.closed = true
+	return nil
+}
+
+// Closed Check if connection is closed or not.
+func (h *H2SC) Closed() bool {
+	return h.closed
 }

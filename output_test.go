@@ -6,7 +6,11 @@ import (
 )
 
 func TestOutputTestPattern(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0001"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
@@ -25,7 +29,11 @@ func TestOutputTestPattern(t *testing.T) {
 }
 
 func TestOverrideOutputFormat1080p5994(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0001"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
@@ -36,7 +44,11 @@ func TestOverrideOutputFormat1080p5994(t *testing.T) {
 }
 
 func TestOverrideOutputFormat720p5994(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0001"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
@@ -47,7 +59,11 @@ func TestOverrideOutputFormat720p5994(t *testing.T) {
 }
 
 func TestFreezeCurrentFrame(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0001"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}

@@ -1,19 +1,11 @@
 package h2sc
 
 import (
-	"fmt"
-	"net"
+	"time"
 )
 
 // Identify Give H2SC specific ID.
 func (h *H2SC) Identify(id string) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_IDENTIFY
 	packet.idnum = "00"
@@ -23,7 +15,8 @@ func (h *H2SC) Identify(id string) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}

@@ -1,9 +1,6 @@
 package h2sc
 
-import (
-	"fmt"
-	"net"
-)
+import "time"
 
 var (
 	OUTPUT_MUTE_UNMUTE = []byte("00000")
@@ -53,13 +50,6 @@ var (
 
 // ForceMute Forcemute specified
 func (h *H2SC) ForceMute(state []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_FORCEMUTE
 	packet.idnum = h.id
@@ -69,7 +59,8 @@ func (h *H2SC) ForceMute(state []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -79,13 +70,6 @@ func (h *H2SC) ForceMute(state []byte) error {
 
 // FreezeFrame Freezes frame
 func (h *H2SC) FreezeFrame(freeze bool) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	param := OUTPUT_FREEZE_DISABLE
 	if freeze {
 		param = OUTPUT_FREEZE_ENABLE
@@ -100,7 +84,8 @@ func (h *H2SC) FreezeFrame(freeze bool) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -110,13 +95,6 @@ func (h *H2SC) FreezeFrame(freeze bool) error {
 
 // ForceAspectRatio Override aspect-ratio
 func (h *H2SC) ForceAspectRatio(state []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_ASPECT
 	packet.idnum = h.id
@@ -126,7 +104,8 @@ func (h *H2SC) ForceAspectRatio(state []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -136,13 +115,6 @@ func (h *H2SC) ForceAspectRatio(state []byte) error {
 
 // OverrideOutputFormat Overrides output SDI signal format.
 func (h *H2SC) OverrideOutputFormat(format []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_SDIFORMAT
 	packet.idnum = h.id
@@ -152,7 +124,8 @@ func (h *H2SC) OverrideOutputFormat(format []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -162,13 +135,6 @@ func (h *H2SC) OverrideOutputFormat(format []byte) error {
 
 // SeamlessBehavior Change seamless switching behavior.
 func (h *H2SC) SeamlessBehavior(state []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_SEAMLESS_AND_LOCK
 	packet.idnum = h.id
@@ -178,7 +144,8 @@ func (h *H2SC) SeamlessBehavior(state []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -188,13 +155,6 @@ func (h *H2SC) SeamlessBehavior(state []byte) error {
 
 // RotateAndMirror Rotating and mirroring.
 func (h *H2SC) RotateAndMirror(state []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_ROTATE_AND_MIRROR
 	packet.idnum = h.id
@@ -204,7 +164,8 @@ func (h *H2SC) RotateAndMirror(state []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -214,13 +175,6 @@ func (h *H2SC) RotateAndMirror(state []byte) error {
 
 // PowerSave Set power-save behavior.
 func (h *H2SC) PowerSave(state []byte) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	packet := newPacket()
 	packet.command = COMMAND_POWERSAVE
 	packet.idnum = h.id
@@ -230,7 +184,8 @@ func (h *H2SC) PowerSave(state []byte) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -240,13 +195,6 @@ func (h *H2SC) PowerSave(state []byte) error {
 
 // TestPattern Enable test pattern output.
 func (h *H2SC) TestPattern(enabled bool) error {
-	addr := fmt.Sprintf("%s:%d", h.ipAddr.String(), Port)
-	conn, err := net.Dial("tcp", addr)
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
-
 	param := OUTPUT_TESTPATTERN_DISABLE
 	if enabled {
 		param = OUTPUT_TESTPATTERN_ENABLE
@@ -261,7 +209,8 @@ func (h *H2SC) TestPattern(enabled bool) error {
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
-	_, err = conn.Write(ps)
+	h.conn.SetDeadline(time.Now().Add(timeout))
+	_, err := h.conn.Write(ps)
 	if err != nil {
 		return err
 	}

@@ -5,14 +5,22 @@ import (
 )
 
 func TestReset(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0000"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 }
 
 func TestIdentify(t *testing.T) {
-	sc := New()
+	sc, err := New()
+	if err != nil {
+		t.Fatalf("Failed to initialize : %v", err)
+	}
+	defer sc.Disconnect()
 	if err := sc.Identify("0001"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
