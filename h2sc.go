@@ -39,7 +39,7 @@ type controlPacket struct {
 }
 
 func (p *controlPacket) ToFixedSlice() [12]byte {
-	b := make([]byte, 12)
+	b := make([]byte, 0, 12)
 	b = append(b, p.header...)
 	b = append(b, []byte(p.idnum)...)
 	b = append(b, p.command...)
