@@ -12,13 +12,13 @@ const (
 	// Port Default H2SC Port(1300)
 	Port              = 1300
 	fixedPacketLength = 12
-
-	timeout = time.Millisecond * 50
 )
 
 var (
 	header = []byte("#$")
 	footer = byte('\r')
+
+	timeout = time.Millisecond * 50 // request timeout for command TCP API. default:50ms
 )
 
 // checkPacketLength Checks packet lenth is valid(12).
