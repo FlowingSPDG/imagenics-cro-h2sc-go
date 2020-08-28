@@ -7,7 +7,9 @@ import (
 )
 
 const (
-	IPaddr            = "192.168.002.222"
+	// IPaddr Default H2SC IP address(192.168.002.222)
+	IPaddr = "192.168.002.222"
+	// Port Default H2SC Port(1300)
 	Port              = 1300
 	fixedPacketLength = 12
 
@@ -19,6 +21,7 @@ var (
 	footer = byte('\r')
 )
 
+// checkPacketLength Checks packet lenth is valid(12).
 func checkPacketLength(packet []byte) error {
 	if len(packet) != fixedPacketLength {
 		return fmt.Errorf("Invalid packet length. [valid]=[%d] , [request]=%d", fixedPacketLength, len(packet))
@@ -26,6 +29,7 @@ func checkPacketLength(packet []byte) error {
 	return nil
 }
 
+// newPacket Generate new packet
 func newPacket() *controlPacket {
 	return &controlPacket{
 		header: header,
@@ -33,6 +37,7 @@ func newPacket() *controlPacket {
 	}
 }
 
+// controlPacket Control command packets
 type controlPacket struct {
 	header  []byte // 2bytes fixed header
 	idnum   string // 2bytes ID Number. e.g. 00~99
@@ -41,8 +46,9 @@ type controlPacket struct {
 	footer  byte   // 1byte carriage return.(0x0d)
 }
 
-func (p *controlPacket) ToFixedSlice() [12]byte {
-	b := make([]byte, 12)
+// ToFixedArray Generates Fixed length(12) array.
+func (p *controlPacket) ToFixedArray() [12]byte {
+	b := make([]byte, 0, 12)
 	b = append(b, p.header...)
 	b = append(b, []byte(p.idnum)...)
 	b = append(b, p.command...)
@@ -53,6 +59,7 @@ func (p *controlPacket) ToFixedSlice() [12]byte {
 	return packet
 }
 
+// ToSlice Generates variable length slice.
 func (p *controlPacket) ToSlice() []byte {
 	b := make([]byte, 0, 12)
 	b = append(b, p.header...)
