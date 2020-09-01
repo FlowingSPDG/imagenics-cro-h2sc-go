@@ -143,8 +143,8 @@ func TestMirrorHorizonal(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
-	defer sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
+	sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
+	defer sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
 	t.Log("Mirroring horizon")
 	time.Sleep(time.Second * 3)
 }
@@ -159,8 +159,8 @@ func TestMirrorVertical(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
-	defer sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
+	sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
+	defer sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
 	t.Log("Mirroring horizon")
 	time.Sleep(time.Second * 3)
 }
