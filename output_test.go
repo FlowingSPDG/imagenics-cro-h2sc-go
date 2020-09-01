@@ -15,8 +15,8 @@ func TestForceMuteAll(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	defer sc.ForceMute(OUTPUT_MUTE_UNMUTE)
-	sc.ForceMute(OUTPUT_MUTE_ALL)
+	defer sc.ForceMute(PARAMETER_OUTPUT_MUTE_UNMUTE)
+	sc.ForceMute(PARAMETER_OUTPUT_MUTE_ALL)
 	t.Log("Muted All...")
 	time.Sleep(time.Second * 3)
 	t.Log("Unmute...")
@@ -32,8 +32,8 @@ func TestForceMuteVideo(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	defer sc.ForceMute(OUTPUT_MUTE_VIDEO)
-	sc.ForceMute(OUTPUT_MUTE_ALL)
+	defer sc.ForceMute(PARAMETER_OUTPUT_MUTE_VIDEO)
+	sc.ForceMute(PARAMETER_OUTPUT_MUTE_ALL)
 	t.Log("Muted Video...")
 	time.Sleep(time.Second * 3)
 	t.Log("Unmute...")
@@ -49,8 +49,8 @@ func TestForceMuteAudio(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	defer sc.ForceMute(OUTPUT_MUTE_UNMUTE)
-	sc.ForceMute(OUTPUT_MUTE_AUDIO)
+	defer sc.ForceMute(PARAMETER_OUTPUT_MUTE_UNMUTE)
+	sc.ForceMute(PARAMETER_OUTPUT_MUTE_AUDIO)
 	t.Log("Muted Audio...")
 	time.Sleep(time.Second * 3)
 	t.Log("Unmute...")
@@ -83,7 +83,7 @@ func TestForceAspect(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.ForceAspectRatio(OUTPUT_ASPECT_FULL)
+	sc.ForceAspectRatio(PARAMETER_OUTPUT_ASPECT_FULL)
 	t.Log("Set FULL Aspect...")
 }
 
@@ -97,7 +97,7 @@ func TestOverrideOutputFormat1080p5994(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	if err := sc.OverrideOutputFormat(OUTPUT_FORMAT_1080p5994); err != nil {
+	if err := sc.OverrideOutputFormat(PARAMETER_OUTPUT_FORMAT_1080p5994); err != nil {
 		t.Fatalf("Failed to override output format : %v", err)
 	}
 }
@@ -112,7 +112,7 @@ func TestOverrideOutputFormat720p5994(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	if err := sc.OverrideOutputFormat(OUTPUT_FORMAT_720p5994); err != nil {
+	if err := sc.OverrideOutputFormat(PARAMETER_OUTPUT_FORMAT_720p5994); err != nil {
 		t.Fatalf("Failed to override output format : %v", err)
 	}
 }
@@ -127,8 +127,8 @@ func TestRotate(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.RotateAndMirror(OUTPUT_ROTATE_180DEGREES)
-	defer sc.RotateAndMirror(OUTPUT_ROTATE_NORMAL)
+	sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_180DEGREES)
+	defer sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
 	t.Log("Rotating 180degrees")
 	time.Sleep(time.Second * 3)
 }
@@ -143,8 +143,8 @@ func TestMirrorHorizonal(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.RotateAndMirror(OUTPUT_ROTATE_NORMAL)
-	defer sc.RotateAndMirror(OUTPUT_MIRROR_HORIZON)
+	sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
+	defer sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
 	t.Log("Mirroring horizon")
 	time.Sleep(time.Second * 3)
 }
@@ -159,8 +159,8 @@ func TestMirrorVertical(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	sc.RotateAndMirror(OUTPUT_ROTATE_NORMAL)
-	defer sc.RotateAndMirror(OUTPUT_MIRROR_HORIZON)
+	sc.RotateAndMirror(PARAMETER_OUTPUT_ROTATE_NORMAL)
+	defer sc.RotateAndMirror(PARAMETER_OUTPUT_MIRROR_HORIZON)
 	t.Log("Mirroring horizon")
 	time.Sleep(time.Second * 3)
 }

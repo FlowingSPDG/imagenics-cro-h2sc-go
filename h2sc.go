@@ -39,11 +39,11 @@ func newPacket() *controlPacket {
 
 // controlPacket Control command packets
 type controlPacket struct {
-	header  []byte // 2bytes fixed header
-	idnum   string // 2bytes ID Number. e.g. 00~99
-	command []byte // 2bytes command.
-	param   []byte // 5bytes parameter. e.g. 00000, -9999, +9999.
-	footer  byte   // 1byte carriage return.(0x0d)
+	header  []byte    // 2bytes fixed header
+	idnum   string    // 2bytes ID Number. e.g. 00~99
+	command COMMAND   // 2bytes command.
+	param   PARAMETER // 5bytes parameter. e.g. 00000, -9999, +9999.
+	footer  byte      // 1byte carriage return.(0x0d)
 }
 
 // ToFixedArray Generates Fixed length(12) array.
