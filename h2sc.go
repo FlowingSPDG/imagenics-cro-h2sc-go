@@ -46,8 +46,30 @@ type controlPacket struct {
 	footer  byte      // 1byte carriage return.(0x0d)
 }
 
+func (p *controlPacket) Validate() error {
+	if len(p.header) != 2 {
+		return fmt.Errorf("Invalid header size")
+	}
+	if len(p.idnum) != 2 {
+		return fmt.Errorf("Invalid ID size")
+	}
+	if len(p.command) != 2 {
+		return fmt.Errorf("Invalid command size")
+	}
+	if len(p.param) != 5 {
+		return fmt.Errorf("Invalid ID size")
+	}
+	if p.footer != footer {
+		return fmt.Errorf("Unknown footer byte")
+	}
+	return nil
+}
+
 // ToFixedArray Generates Fixed length(12) array.
-func (p *controlPacket) ToFixedArray() [12]byte {
+func (p *controlPacket) ToFixedArray() ([12]byte, error) {
+	if err := p.Validate(); err != nil {
+		return [12]byte{}, err
+	}
 	b := make([]byte, 0, 12)
 	b = append(b, p.header...)
 	b = append(b, []byte(p.idnum)...)
@@ -56,18 +78,21 @@ func (p *controlPacket) ToFixedArray() [12]byte {
 	b = append(b, footer)
 	var packet [12]byte
 	copy(packet[:], b)
-	return packet
+	return packet, nil
 }
 
 // ToSlice Generates variable length slice.
-func (p *controlPacket) ToSlice() []byte {
+func (p *controlPacket) ToSlice() ([]byte, error) {
+	if err := p.Validate(); err != nil {
+		return nil, err
+	}
 	b := make([]byte, 0, 12)
 	b = append(b, p.header...)
 	b = append(b, []byte(p.idnum)...)
 	b = append(b, p.command...)
 	b = append(b, p.param...)
 	b = append(b, footer)
-	return b
+	return b, nil
 }
 
 // H2SC H2SC main struct

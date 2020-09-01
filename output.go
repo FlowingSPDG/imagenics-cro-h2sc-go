@@ -9,12 +9,15 @@ func (h *H2SC) ForceMute(state PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = state
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -34,12 +37,15 @@ func (h *H2SC) FreezeFrame(freeze bool) error {
 	packet.idnum = h.id
 	packet.param = param
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -54,12 +60,15 @@ func (h *H2SC) ForceAspectRatio(state PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = state
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -74,12 +83,15 @@ func (h *H2SC) OverrideOutputFormat(format PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = format
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -94,12 +106,15 @@ func (h *H2SC) SeamlessBehavior(state PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = state
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -114,12 +129,15 @@ func (h *H2SC) RotateAndMirror(state PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = state
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -134,12 +152,15 @@ func (h *H2SC) PowerSave(state PARAMETER) error {
 	packet.idnum = h.id
 	packet.param = state
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}
@@ -159,12 +180,15 @@ func (h *H2SC) TestPattern(enabled bool) error {
 	packet.idnum = h.id
 	packet.param = param
 
-	ps := packet.ToSlice()
+	ps, err := packet.ToSlice()
+	if err != nil {
+		return err
+	}
 	if err := checkPacketLength(ps); err != nil {
 		return err
 	}
 	h.conn.SetDeadline(time.Now().Add(timeout))
-	_, err := h.conn.Write(ps)
+	_, err = h.conn.Write(ps)
 	if err != nil {
 		return err
 	}

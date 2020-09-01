@@ -21,7 +21,7 @@ func TestIdentify(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()

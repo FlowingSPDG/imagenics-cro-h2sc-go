@@ -11,7 +11,7 @@ func TestForceMuteAll(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -28,7 +28,7 @@ func TestForceMuteVideo(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -45,7 +45,7 @@ func TestForceMuteAudio(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -62,7 +62,7 @@ func TestFreezeFrame(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -79,7 +79,7 @@ func TestForceAspect(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -93,7 +93,7 @@ func TestOverrideOutputFormat1080p5994(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -108,7 +108,7 @@ func TestOverrideOutputFormat720p5994(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -123,7 +123,7 @@ func TestRotate(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -139,7 +139,7 @@ func TestMirrorHorizonal(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -155,7 +155,7 @@ func TestMirrorVertical(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
@@ -171,7 +171,7 @@ func TestOutputTestPattern(t *testing.T) {
 		t.Fatalf("Failed to initialize : %v", err)
 	}
 	defer sc.Disconnect()
-	if err := sc.Identify("0001"); err != nil {
+	if err := sc.Identify("01"); err != nil {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
