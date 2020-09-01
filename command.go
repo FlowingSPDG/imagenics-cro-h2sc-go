@@ -2,6 +2,7 @@ package h2sc
 
 // TODO : Declare receive commands
 
+// COMMAND 2byte command.
 type COMMAND []byte
 
 var (

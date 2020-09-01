@@ -1,6 +1,21 @@
 package h2sc
 
+import "fmt"
+
+// PARAMETER 5bytes parameter. e.g. 00000, -9999, +9999.
 type PARAMETER []byte
+
+const (
+	fixedParameterLength = 5
+)
+
+// Validate Validates length
+func (p PARAMETER) Validate() error {
+	if len(p) != fixedParameterLength {
+		return fmt.Errorf("Parameter length not valid")
+	}
+	return nil
+}
 
 var (
 	PARAMETER_OUTPUT_MUTE_UNMUTE = PARAMETER("00000")
