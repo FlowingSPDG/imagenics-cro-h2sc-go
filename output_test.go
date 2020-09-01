@@ -32,8 +32,8 @@ func TestForceMuteVideo(t *testing.T) {
 		t.Fatalf("Failed to identify : %v", err)
 	}
 	defer sc.ResetID()
-	defer sc.ForceMute(PARAMETER_OUTPUT_MUTE_VIDEO)
-	sc.ForceMute(PARAMETER_OUTPUT_MUTE_ALL)
+	defer sc.ForceMute(PARAMETER_OUTPUT_MUTE_UNMUTE)
+	sc.ForceMute(PARAMETER_OUTPUT_MUTE_VIDEO)
 	t.Log("Muted Video...")
 	time.Sleep(time.Second * 3)
 	t.Log("Unmute...")
