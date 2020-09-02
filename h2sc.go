@@ -53,11 +53,11 @@ func (p *controlPacket) Validate() error {
 	if len(p.idnum) != 2 {
 		return fmt.Errorf("Invalid ID size")
 	}
-	if len(p.command) != 2 {
-		return fmt.Errorf("Invalid command size")
+	if err := p.command.Validate(); err != nil {
+		return err
 	}
-	if len(p.param) != 5 {
-		return fmt.Errorf("Invalid ID size")
+	if err := p.param.Validate(); err != nil {
+		return err
 	}
 	if p.footer != footer {
 		return fmt.Errorf("Unknown footer byte")

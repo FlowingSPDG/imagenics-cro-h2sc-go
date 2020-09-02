@@ -4,12 +4,16 @@ import "fmt"
 
 // TODO : Declare receive commands
 
+const (
+	fixedCommandLength = 2
+)
+
 // COMMAND 2byte command.
 type COMMAND []byte
 
 // Validate byte length
 func (c COMMAND) Validate() error {
-	if len(c) != 2 {
+	if len(c) != fixedCommandLength {
 		return fmt.Errorf("Invalid command length")
 	}
 	return nil
