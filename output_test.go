@@ -133,6 +133,7 @@ func TestRotate(t *testing.T) {
 	time.Sleep(time.Second * 3)
 }
 
+// TODO??
 func TestMirrorHorizonal(t *testing.T) {
 	sc, err := New()
 	if err != nil {
